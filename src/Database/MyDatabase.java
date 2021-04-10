@@ -1,5 +1,7 @@
 package Database;
 
+import java.sql.ResultSet;
+
 public abstract class MyDatabase {
 
 public MyDatabase() {
