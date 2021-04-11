@@ -1,5 +1,8 @@
 package Database;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import Database.MySqlDatabase;
@@ -37,6 +40,34 @@ public class TestTrial {
 
 					if(select==1) {
 						
+						ResultSet rs=test.listOfvalues("SELECT * FROM students");
+						try {
+							while(rs.next()) {
+								
+								int id=rs.getInt("id");
+								String name=rs.getString("name");
+								String surname=rs.getString("surname");
+								Date dateofbirth=rs.getDate("dateofbirth");
+								String birthplace=rs.getString("birthplace");
+								int identificationnumber=rs.getInt("identificationnumber");
+								int telefonnumber=rs.getInt("telefonnumber");
+								String testof=rs.getString("TEST");
+								
+
+								System.out.println(" ID : " + id);
+								System.out.println(" NAME : " + name);
+								System.out.println(" SURNAME : " + surname);
+								System.out.println(" DATE OF BIRTH : " + dateofbirth);
+								System.out.println(" BIRTHPLACE : " + birthplace);
+								System.out.println(" IDENTIFICATION NUMBER :" + identificationnumber);
+								System.out.println(" TELEPHONE : " + telefonnumber);
+								System.out.println(" RETURN  : " + testof);
+								
+							}
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							//e.printStackTrace();
+						}
 						
 					}else if(select==2) {
 						
