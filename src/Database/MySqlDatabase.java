@@ -20,7 +20,7 @@ public class MySqlDatabase extends MyDatabase{
 	
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("baglandi");
+			
 		
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
@@ -39,21 +39,21 @@ public class MySqlDatabase extends MyDatabase{
 	@Override
 	public boolean connect(String dbName, String userName, String userPass, String host, int port) {
 		// TODO Auto-generated method stub
-		boolean b=false;
-		String network="jdbc:mysql://"+host+":"+port+"/"+dbName+"?serverTimezone=UTC";
+		boolean status=false;
+		String network="jdbc:mysql://"+host+":"+port+"/"+dbName;
 		try {
 			connection=DriverManager.getConnection(network,userName,userPass);
 			statement=connection.createStatement();
-			b=true;
+			status=true;
 			
 			//we can connect by this method between java and dataBase
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-			b=false;
+			status=false;
 		}
 		
-		return b;
+		return status;
 	}
 
 	@Override

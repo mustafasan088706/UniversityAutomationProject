@@ -10,7 +10,7 @@ public class TestTrial {
 		
 		if (test.connect("testuniversity", "root", "" ,"localhost" , 3306)) {
 			
-			System.out.println("Connected to the Database");
+			System.out.println("Connected To The Database...");
 		}else {
 			
 			System.out.println("Not Connected");
