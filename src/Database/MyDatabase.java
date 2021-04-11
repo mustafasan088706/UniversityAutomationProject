@@ -22,7 +22,8 @@ public MyDatabase() {
 	public abstract int deleteData(String nameOftable,String whereCondition);
 	public abstract int updateDatad(String query);
 	public abstract int updateData(String nameOftable,String update,String condition);
-	public abstract int totalNumberOfrows(String query);
+	public abstract int totalNumberOfrows(String columns,String nameOftable);
+	public abstract int totalNumberOfrows(String nameOftable);
 	public abstract int totalNumberOftables();
 	
 	

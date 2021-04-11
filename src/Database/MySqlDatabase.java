@@ -15,15 +15,20 @@ public class MySqlDatabase extends MyDatabase{
 	
 	
 	
+
 	public MySqlDatabase() {
-	try {
-		Class.forName("com.mysql.cj.jdbc"); //we have selected our db type.
+	
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("baglandi");
+		
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		
 	}	
+	
 	}
-
 	
 	@Override
 	public boolean connect(String sqliteDb) {
@@ -35,12 +40,12 @@ public class MySqlDatabase extends MyDatabase{
 	public boolean connect(String dbName, String userName, String userPass, String host, int port) {
 		// TODO Auto-generated method stub
 		boolean b=false;
-		String network="jdbc:mysql://"+host+":"+port+"/"+dbName;
+		String network="jdbc:mysql://"+host+":"+port+"/"+dbName+"?serverTimezone=UTC";
 		try {
 			connection=DriverManager.getConnection(network,userName,userPass);
 			statement=connection.createStatement();
 			b=true;
-		
+			
 			//we can connect by this method between java and dataBase
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -48,7 +53,7 @@ public class MySqlDatabase extends MyDatabase{
 			b=false;
 		}
 		
-		return false;
+		return b;
 	}
 
 	@Override
@@ -108,43 +113,139 @@ public class MySqlDatabase extends MyDatabase{
 	@Override
 	public ResultSet listOfvalues(String selectQuery) {
 		// TODO Auto-generated method stub
-		return null;
+		ResultSet rs =null;
+		try {
+			rs=statement.executeQuery(selectQuery);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		return rs;
 	}
 
 	@Override
 	public boolean deleteData(String query) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean b=false;
+		try {
+			statement.executeUpdate(query);
+			b=true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			b=false;
+		}
+		return b;
 	}
 
 	@Override
 	public int deleteData(String nameOftable, String whereCondition) {
 		// TODO Auto-generated method stub
-		return 0;
+		int number=0;
+		try {
+			number=statement.executeUpdate("delete from"+nameOftable+"where"+whereCondition);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			number=-1;
+		}
+		return number;
 	}
 
 	@Override
 	public int updateDatad(String query) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		int number=0;
+		try {
+			number=statement.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			number=-1;
+		}
+		return number;
 	}
 
 	@Override
 	public int updateData(String nameOftable, String update, String condition) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		int number=0;
+		try {
+			number=statement.executeUpdate("update"+nameOftable+"set"+update+"where"+condition);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			number=-1;
+		}
+		return number;
 	}
 
-	@Override
-	public int totalNumberOfrows(String query) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 	@Override
 	public int totalNumberOftables() {
+		int number=0;
+		ResultSet rs=null;
+		try {
+			rs=statement.executeQuery("show tables");
+			while(rs.next()) {
+				number++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			number=-1;
+		}
+		
+		
 		// TODO Auto-generated method stub
-		return 0;
+		return number;
+	}
+
+
+	@Override
+	public int totalNumberOfrows(String columns, String nameOftable) {
+		int count=0;
+		ResultSet rs;
+		try {
+			rs = statement.executeQuery("SELECT"+columns+"FROM"+nameOftable);
+			
+			while(rs.next()) {
+				
+				count++;
+			}
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			count=-1;
+		}
+	
+			
+	return count;
+}
+
+
+	@Override
+	public int totalNumberOfrows(String nameOftable) {
+		
+			int count=0;
+			ResultSet rs;
+			try {
+				rs = statement.executeQuery("SELECT COUNT(*)AS rowcount FROM"+nameOftable);
+				rs.next();
+				count =rs.getInt("rowcount");
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				count=-1;
+			}
+		
+				
+		return count;
 	}
 	
 
