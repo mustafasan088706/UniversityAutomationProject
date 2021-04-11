@@ -66,7 +66,8 @@ public class TestTrial {
 						System.out.println("Not Connected !");
 					}
 					
-			}
+			}else
+				System.out.println("NOT VALID !");
 		
 		}else {
 			
