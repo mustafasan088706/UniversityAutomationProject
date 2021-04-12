@@ -56,8 +56,8 @@ public class TestTrial {
 								String surname=rs.getString("surname");
 								Date dateofbirth=rs.getDate("dateofbirth");
 								String birthplace=rs.getString("birthplace");
-								int identificationnumber=rs.getInt("identificationnumber");
-								int telefonnumber=rs.getInt("telefonnumber");
+								String identificationnumber=rs.getString("identificationnumber");
+								String telefonnumber=rs.getString("telefonnumber");
 								String testof=rs.getString("TEST");
 								
 
