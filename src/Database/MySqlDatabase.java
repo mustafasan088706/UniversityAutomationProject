@@ -101,11 +101,13 @@ public class MySqlDatabase extends MyDatabase{
 		int number=0;
 		
 		try {
-			statement.executeUpdate("insert info"+nameOftable+"(" +columns+") values("+values+")");
+			number=statement.executeUpdate("insert into "+nameOftable+" ("+columns+") value ("+values+")");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			number=-1;
+			
 		}
 		return number;
 	}

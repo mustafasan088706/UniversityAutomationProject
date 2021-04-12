@@ -3,6 +3,7 @@ package Database;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Database.MySqlDatabase;
@@ -11,7 +12,7 @@ public class TestTrial {
 	
 	public static void main(String[] args) {
 	
-		MySqlDatabase test=new MySqlDatabase();
+		MySqlDatabase testValue=new MySqlDatabase();
 		Scanner scanner =new Scanner(System.in);
 		System.out.println("Please enter your username : ");
 		String userName=scanner.next();
@@ -22,12 +23,18 @@ public class TestTrial {
 			
 			if("1234".equals(password)) {
 				
-				if(test.connect("testuniversity", "root", "" ,"localhost" , 3306 )){
+				if(testValue.connect("testuniversity", "root", "" ,"localhost" , 3306 )){
 					System.out.println("Connected To Database...");		
 					
 				
 						
 				while(true) {
+					
+					try {
+						
+					} catch (InputMismatchException e) {
+						// TODO: handle exception
+					}
 					
 					System.out.println("     SELECT ACTION :    " );
 					System.out.println(" 1- List Undergraduate Students :" );
@@ -39,8 +46,8 @@ public class TestTrial {
 					
 
 					if(select==1) {
-						
-						ResultSet rs=test.listOfvalues("SELECT * FROM students");
+				
+								ResultSet rs=testValue.listOfvalues("SELECT * FROM students");
 						try {
 							while(rs.next()) {
 								
@@ -62,6 +69,7 @@ public class TestTrial {
 								System.out.println(" IDENTIFICATION NUMBER :" + identificationnumber);
 								System.out.println(" TELEPHONE : " + telefonnumber);
 								System.out.println(" RETURN  : " + testof);
+								System.out.println("-------------------------------------------------");
 								
 							}
 						} catch (SQLException e) {
@@ -71,6 +79,31 @@ public class TestTrial {
 						
 					}else if(select==2) {
 						
+						System.out.println( " Enter Students Name : " );
+						String name=scanner.next();
+						System.out.println( " Enter Students Surname : " );
+						String surname=scanner.next();
+						System.out.println( " Enter Students Date of Birth  : " );
+						Date dateofbirth=Date.valueOf(scanner.next());
+						System.out.println( " Enter Students Birth Place : " );
+						String birthplace=scanner.next();
+						System.out.println( " Enter Students identification Number : " );
+						String identificationnumber=scanner.next();
+						System.out.println( " Enter Students Telefon Number : " );
+						String telefonnumber=scanner.next();
+						System.out.println( " Enter Students Test Value : " );
+						String test=scanner.next();
+
+						int value =testValue.addData("students", 
+								"name, surname, dateofbirth, birthplace, identificationnumber, telefonnumber,test",
+								"'"+name+"','"+surname+"','"+dateofbirth+"','"+birthplace+"','"+identificationnumber+"','"+telefonnumber+"','"+test+"'");
+					
+						if(value==0) {
+							System.out.println( " Students Not Added! " );
+						}else if (value==1){
+							
+							System.out.println( " Students Added! " );
+						}
 						
 					}else if(select==3) {
 						
