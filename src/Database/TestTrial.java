@@ -69,7 +69,7 @@ public class TestTrial {
 								System.out.println(" IDENTIFICATION NUMBER :" + identificationnumber);
 								System.out.println(" TELEPHONE : " + telefonnumber);
 								System.out.println(" RETURN  : " + testof);
-								System.out.println("-------------------------------------------------");
+								System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
 								
 							}
 						} catch (SQLException e) {
@@ -107,6 +107,15 @@ public class TestTrial {
 						
 					}else if(select==3) {
 						
+						System.out.println( " Enter Students ID For Delete From Database : " );
+						int deleteValue=scanner.nextInt();
+						
+						if(testValue.deleteData("students", "id="+deleteValue)>0) {
+							
+							System.out.println(deleteValue + " Deleted! " );
+						}else
+						
+							System.out.println( " Not Deleted ! " );
 						
 					}else if(select==4){
 						

@@ -40,7 +40,7 @@ public class MySqlDatabase extends MyDatabase{
 	public boolean connect(String dbName, String userName, String userPass, String host, int port) {
 		// TODO Auto-generated method stub
 		boolean status=false;
-		String network="jdbc:mysql://"+host+":"+port+"/"+dbName;
+		String network="jdbc:mysql://"+host+":"+port+"/"+dbName+"?serverTimezone=UTC";
 		try {
 			connection=DriverManager.getConnection(network,userName,userPass);
 			statement=connection.createStatement();
@@ -126,16 +126,18 @@ public class MySqlDatabase extends MyDatabase{
 	}
 
 	@Override
-	public boolean deleteData(String query) {
-		// TODO Auto-generated method stub
+	public boolean deleteData(String deletequery) {
+		
 		boolean b=false;
 		try {
-			statement.executeUpdate(query);
+			statement.executeUpdate(deletequery);
 			b=true;
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			//e.printStackTrace();
 			b=false;
+			
 		}
 		return b;
 	}
@@ -145,11 +147,14 @@ public class MySqlDatabase extends MyDatabase{
 		// TODO Auto-generated method stub
 		int number=0;
 		try {
-			number=statement.executeUpdate("delete from"+nameOftable+"where"+whereCondition);
+			number=statement.executeUpdate("delete from "+nameOftable+" where "+whereCondition);
+					
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			number=-1;
+			
 		}
 		return number;
 	}
