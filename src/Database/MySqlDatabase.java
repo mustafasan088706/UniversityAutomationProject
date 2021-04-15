@@ -158,9 +158,9 @@ public class MySqlDatabase extends MyDatabase{
 		}
 		return number;
 	}
-
+	
 	@Override
-	public int updateDatad(String query) {
+	public int updateData(String query) {
 		// TODO Auto-generated method stub
 		
 		int number=0;
@@ -180,11 +180,13 @@ public class MySqlDatabase extends MyDatabase{
 		
 		int number=0;
 		try {
-			number=statement.executeUpdate("update"+nameOftable+"set"+update+"where"+condition);
+			number=statement.executeUpdate("update "+nameOftable+" set "+update+" where "+condition);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			number=-1;
+			
 		}
 		return number;
 	}
