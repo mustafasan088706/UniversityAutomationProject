@@ -14,9 +14,13 @@ public class TestTrial {
 	
 		MySqlDatabase testValue=new MySqlDatabase();
 		Scanner scanner =new Scanner(System.in);
+		System.out.println("--------------------------------------------------------");
 		System.out.println("Please enter your username : ");
+		System.out.println("--------------------------------------------------------");
 		String userName=scanner.next();
+		System.out.println("--------------------------------------------------------");
 		System.out.println("Please enter your password :");
+		System.out.println("--------------------------------------------------------");
 		String password=scanner.next();
 		
 		if("Admin".equalsIgnoreCase(userName)) {
@@ -35,13 +39,13 @@ public class TestTrial {
 					} catch (InputMismatchException e) {
 						// TODO: handle exception
 					}
-					System.out.println("-----------------------------------");
+					System.out.println("--------------------------------------------------------");
 					System.out.println("     SELECT ACTION :    " );
 					System.out.println(" 1- List Undergraduate Students :" );
 					System.out.println(" 2- Add New Student : " );
 					System.out.println(" 3- Delete A Student : " );
 					System.out.println(" 4- Update A Student : ");
-					System.out.println("-----------------------------------");
+					System.out.println("--------------------------------------------------------");
 					int select=scanner.nextInt();
 					
 
@@ -78,7 +82,7 @@ public class TestTrial {
 						}
 						
 					}else if(select==2) {
-						
+						System.out.println("----------------------------------------");
 						System.out.print( " Enter Students Name : " );
 						String name=scanner.next();
 						System.out.print( " Enter Students Surname : " );
@@ -93,7 +97,8 @@ public class TestTrial {
 						String telefonnumber=scanner.next();
 						System.out.print( " Enter Students Adress : " );
 						String Adress=scanner.next();
-
+						System.out.println("----------------------------------------");
+						
 						int value =testValue.addData("students", 
 								"name, surname, dateofbirth, birthplace, identificationnumber, telefonnumber,Adress",
 								"'"+name+"','"+surname+"','"+dateofbirth+"','"+birthplace+"','"+identificationnumber+"','"+telefonnumber+"','"+Adress+"'");
