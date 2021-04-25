@@ -39,6 +39,8 @@ public class TestTrial {
 					} catch (InputMismatchException e) {
 						// TODO: handle exception
 					}
+					
+					
 					System.out.println("--------------------------------------------------------");
 					System.out.println("     SELECT ACTION :    " );
 					System.out.println(" 1- List Undergraduate Students :" );
@@ -48,7 +50,7 @@ public class TestTrial {
 					System.out.println("--------------------------------------------------------");
 					int select=scanner.nextInt();
 					
-
+					
 					if(select==1) {
 				
 								ResultSet rs=testValue.listOfvalues("SELECT * FROM students");
@@ -83,19 +85,19 @@ public class TestTrial {
 						
 					}else if(select==2) {
 						System.out.println("----------------------------------------");
-						System.out.print( " Enter Students Name : " );
+						System.out.print( " 	Enter Students Name : " );
 						String name=scanner.next();
-						System.out.print( " Enter Students Surname : " );
+						System.out.print( " 	Enter Students Surname : " );
 						String surname=scanner.next();
-						System.out.print( " Enter Students Date of Birth  : " );
+						System.out.print( " 	Enter Students Date of Birth  : " );
 						Date dateofbirth=Date.valueOf(scanner.next());
-						System.out.print( " Enter Students Birth Place : " );
+						System.out.print( " 	Enter Students Birth Place : " );
 						String birthplace=scanner.next();
-						System.out.print( " Enter Students identification Number : " );
+						System.out.print( " 	Enter Students identification Number : " );
 						String identificationnumber=scanner.next();
-						System.out.print( " Enter Students Telefon Number : " );
+						System.out.print( " 	Enter Students Telefon Number : " );
 						String telefonnumber=scanner.next();
-						System.out.print( " Enter Students Adress : " );
+						System.out.print( " 	Enter Students Adress : " );
 						String Adress=scanner.next();
 						System.out.println("----------------------------------------");
 						
@@ -112,7 +114,7 @@ public class TestTrial {
 						
 					}else if(select==3) {
 						
-						System.out.println( " Enter Students ID For Delete From Database : " );
+						System.out.println( "	 Enter Students ID For Delete From Database : " );
 						
 						int deleteValue=scanner.nextInt();
 						
@@ -125,9 +127,9 @@ public class TestTrial {
 						
 					}else if(select==4){
 						
-						System.out.println( " Enter ID Nummer for Update of Students Birthplace Information... " );
+						System.out.println( " 	Enter ID Nummer for Update of Students Birthplace Information... " );
 						int studentsId=scanner.nextInt();
-						System.out.println( " Enter New Birthplace : " );
+						System.out.println( " 	Enter New Birthplace : " );
 						String updateInfo =scanner.next();
 						int n =testValue.updateData("students", "birthplace='"+updateInfo+"'", "id="+studentsId);
 						
@@ -150,6 +152,7 @@ public class TestTrial {
 						
 					}
 				}
+				
 				
 					
 					}else {
